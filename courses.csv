@@ -1,0 +1,30 @@
+CSCI100,Introduction to Computer Science
+CSCI101,Introduction to Programming in C++,CSCI100
+CSCI200,Data Structures,CSCI101
+CSCI300,Introduction to Algorithms,CSCI200
+CSCI301,Advanced Programming in C++,CSCI101
+CSCI302,Introduction to Programming,CSCI101
+CSCI310,Computer Architecture,CSCI200
+CSCI320,Database Systems,CSCI200
+CSCI330,Computer Networks,CSCI200
+CSCI340,Software Engineering,CSCI200
+CSCI350,Operating Systems,CSCI200
+CSCI360,Artificial Intelligence,CSCI300
+CSCI370,Machine Learning,CSCI300,MATH201
+CSCI380,Computer Graphics,CSCI200,MATH201
+CSCI390,Cybersecurity,CSCI200
+CSCI400,Large Software Development,CSCI301,CSCI350
+CSCI410,Compiler Design,CSCI300
+CSCI420,Distributed Systems,CSCI330,CSCI350
+CSCI430,Web Development,CSCI200
+CSCI440,Mobile Application Development,CSCI301
+CSCI450,Theory of Computation,CSCI300,MATH201
+CSCI460,Computer Vision,CSCI360
+CSCI470,Natural Language Processing,CSCI360
+CSCI480,Cloud Computing,CSCI330,CSCI350
+CSCI490,Senior Capstone Project,CSCI400
+MATH201,Discrete Mathematics
+MATH202,Calculus I
+MATH203,Calculus II,MATH202
+MATH301,Linear Algebra,MATH202
+MATH302,Probability and Statistics,MATH203
