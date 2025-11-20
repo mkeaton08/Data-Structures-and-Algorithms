@@ -1,28 +1,28 @@
-CSCI100,Introduction to Computer Science
-CSCI101,Introduction to Programming in C++,CSCI100
-CSCI200,Data Structures,CSCI101
-CSCI300,Introduction to Algorithms,CSCI200
-CSCI301,Advanced Programming in C++,CSCI101
-CSCI302,Introduction to Programming,CSCI101
-CSCI310,Computer Architecture,CSCI200
-CSCI320,Database Systems,CSCI200
-CSCI330,Computer Networks,CSCI200
-CSCI340,Software Engineering,CSCI200
-CSCI350,Operating Systems,CSCI200
-CSCI360,Artificial Intelligence,CSCI300
-CSCI370,Machine Learning,CSCI300,MATH201
-CSCI380,Computer Graphics,CSCI200,MATH201
-CSCI390,Cybersecurity,CSCI200
-CSCI400,Large Software Development,CSCI301,CSCI350
-CSCI410,Compiler Design,CSCI300
-CSCI420,Distributed Systems,CSCI330,CSCI350
-CSCI430,Web Development,CSCI200
-CSCI440,Mobile Application Development,CSCI301
-CSCI450,Theory of Computation,CSCI300,MATH201
-CSCI460,Computer Vision,CSCI360
-CSCI470,Natural Language Processing,CSCI360
-CSCI480,Cloud Computing,CSCI330,CSCI350
-CSCI490,Senior Capstone Project,CSCI400
+CS100,Introduction to Computer Science
+CS101,Introduction to Programming in C++,CS100
+CS200,Data Structures,CS101
+CS300,Introduction to Algorithms,CS200
+CS301,Advanced Programming in C++,CS101
+CS302,Introduction to Programming,CS101
+CS310,Computer Architecture,CS200
+CS320,Database Systems,CS200
+CS330,Computer Networks,CS200
+CS340,Software Engineering,CS200
+CS350,Operating Systems,CS200
+CS360,Artificial Intelligence,CS300
+CS370,Machine Learning,CS300,MATH201
+CS380,Computer Graphics,CS200,MATH201
+CS390,Cybersecurity,CS200
+CS400,Large Software Development,CS301,CS350
+CS410,Compiler Design,CS300
+CS420,Distributed Systems,CS330,CS350
+CS430,Web Development,CS200
+CS440,Mobile Application Development,CS301
+CS450,Theory of Computation,CS300,MATH201
+CS460,Computer Vision,CS360
+CS470,Natural Language Processing,CS360
+CS480,Cloud Computing,CS330,CS350
+CS490,Senior Capstone Project,CS400
 MATH201,Discrete Mathematics
 MATH202,Calculus I
 MATH203,Calculus II,MATH202

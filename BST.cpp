@@ -10,8 +10,30 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <algorithm>
+#include <cctype>
 
 using namespace std;
+
+// Normalize string: trim whitespace and convert to uppercase
+string normalize(string str) {
+    // Trim any leading whitespace
+    size_t start = 0;
+    while (start < str.length() && isspace(str[start])) {
+        start++;
+    }
+    
+    // Trim any trailing whitespace
+    size_t end = str.length();
+    while (end > start && isspace(str[end - 1])) {
+        end--;
+    }
+    
+    // Extract trimmed substring and convert to uppercase
+    string result = str.substr(start, end - start);
+    transform(result.begin(), result.end(), result.begin(), ::toupper);
+    return result;
+}
 
 // Represents a course with its number, name, and prerequisites
 struct Course {
@@ -44,12 +66,14 @@ private:
     Node* root;
     void addNode(Node* node, Course course);
     void inOrder(Node* node);
+    void rangeQuery(Node* node, string lowKey, string highKey, vector<Course>& results);
 
 public:
     BinarySearchTree();
     void inOrder();
     void Insert(Course course);
     Course Search(string courseNumber);
+    vector<Course> RangeQuery(string lowKey, string highKey);
 };
 
 BinarySearchTree::BinarySearchTree() {
@@ -92,6 +116,9 @@ void BinarySearchTree::inOrder(Node* node) {
 
 // Insert a course into the BST, creating root if tree is empty
 void BinarySearchTree::Insert(Course course) {
+    // Normalize course number before insertion
+    course.courseNumber = normalize(course.courseNumber);
+    
     // Handle empty tree case
     if (root == nullptr) {
         root = new Node(course);
@@ -125,6 +152,8 @@ void BinarySearchTree::addNode(Node* node, Course course) {
 
 // Search for a course by courseNumber, returns empty Course if not found
 Course BinarySearchTree::Search(string courseNumber) {
+    // Normalize input for comparison
+    courseNumber = normalize(courseNumber);
     Node* current = root;
 
     // Iterative search through the tree
@@ -145,6 +174,40 @@ Course BinarySearchTree::Search(string courseNumber) {
     // Return empty course if not found
     Course course;
     return course;
+}
+
+// Helper for range query
+// Only traverses subtrees that may contain courses in range
+void BinarySearchTree::rangeQuery(Node* node, string lowKey, string highKey, vector<Course>& results) {
+    if (node == nullptr) {
+        return;
+    }
+    
+    // Prune left subtree if current node is at or below lowKey
+    if (node->course.courseNumber > lowKey) {
+        rangeQuery(node->left, lowKey, highKey, results);
+    }
+    
+    // Add current node if it's within range
+    if (node->course.courseNumber >= lowKey && node->course.courseNumber <= highKey) {
+        results.push_back(node->course);
+    }
+    
+    // Prune right subtree if current node is at or above highKey
+    if (node->course.courseNumber < highKey) {
+        rangeQuery(node->right, lowKey, highKey, results);
+    }
+}
+
+// Range query method: returns all courses where lowKey <= courseNumber <= highKey
+vector<Course> BinarySearchTree::RangeQuery(string lowKey, string highKey) {
+    // Normalize input keys
+    lowKey = normalize(lowKey);
+    highKey = normalize(highKey);
+    
+    vector<Course> results;
+    rangeQuery(root, lowKey, highKey, results);
+    return results;
 }
 
 // Load courses from CSV file (format: courseNumber,courseName,prereq1,prereq2,...)
@@ -205,6 +268,7 @@ int main() {
         cout << " 1. Load Data Structure." << endl;
         cout << " 2. Print Course List." << endl;
         cout << " 3. Print Course." << endl;
+        cout << " 4. Course Range Query." << endl;
         cout << " 9. Exit." << endl;
         cout << "What would you like to do?" << endl;
         cin >> choice;
@@ -250,6 +314,30 @@ int main() {
                 }
                 else {
                     cout << "Course not found" << endl;
+                }
+            }
+            break;
+
+        case 4:
+            // Range query to find all courses between lowKey and highKey
+            {
+                string lowKey, highKey;
+                cout << "Enter lower bound course number: " << endl;
+                cin.ignore();
+                getline(cin, lowKey);
+                cout << "Enter upper bound course number: " << endl;
+                getline(cin, highKey);
+                
+                vector<Course> results = bst.RangeQuery(lowKey, highKey);
+                
+                if (results.empty()) {
+                    cout << "No courses found in range [" << normalize(lowKey) << ", " << normalize(highKey) << "]" << endl;
+                }
+                else {
+                    cout << "Courses in range [" << normalize(lowKey) << ", " << normalize(highKey) << "]:" << endl;
+                    for (const Course& course : results) {
+                        cout << course.courseNumber << ", " << course.courseName << endl;
+                    }
                 }
             }
             break;
