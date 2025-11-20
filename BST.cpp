@@ -183,8 +183,8 @@ void BinarySearchTree::rangeQuery(Node* node, string lowKey, string highKey, vec
         return;
     }
     
-    // Prune left subtree if current node is at or below lowKey
-    if (node->course.courseNumber > lowKey) {
+    // Search left subtree if there might be values >= lowKey on the left
+    if (lowKey < node->course.courseNumber) {
         rangeQuery(node->left, lowKey, highKey, results);
     }
     
@@ -193,8 +193,8 @@ void BinarySearchTree::rangeQuery(Node* node, string lowKey, string highKey, vec
         results.push_back(node->course);
     }
     
-    // Prune right subtree if current node is at or above highKey
-    if (node->course.courseNumber < highKey) {
+    // Search right subtree if there might be values <= highKey on the right
+    if (highKey > node->course.courseNumber) {
         rangeQuery(node->right, lowKey, highKey, results);
     }
 }
