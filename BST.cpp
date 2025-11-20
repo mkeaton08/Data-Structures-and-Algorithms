@@ -264,7 +264,7 @@ int main() {
 
     // Main menu loop
     while (choice != 9) {
-        cout << "Welcome to the course planner." << endl;
+        cout << "Welcome to the course planner. Be sure to load your data structure first (Option 1)." << endl;
         cout << " 1. Load Data Structure." << endl;
         cout << " 2. Print Course List." << endl;
         cout << " 3. Print Course." << endl;
